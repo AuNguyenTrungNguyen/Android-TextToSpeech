@@ -73,14 +73,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (textToSpeech != null && textToSpeech.isSpeaking()) {
-            textToSpeech.stop();
-        }
+        stopSpeech(textToSpeech);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        stopSpeech(textToSpeech);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        stopSpeech(textToSpeech);
+    }
+
+    private void stopSpeech(TextToSpeech textToSpeech){
         if (textToSpeech != null && textToSpeech.isSpeaking()) {
             textToSpeech.stop();
         }
